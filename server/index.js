@@ -1,20 +1,23 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
 const adminRouter = require("./routes/admin");
 const userRouter = require("./routes/user");
+const dotenv = require("dotenv");
 
 const app = express();
-
+dotenv.config();
 app.use(cors());
 app.use(express.json());
 
-app.use("/admin", adminRouter)
-app.use("/user", userRouter)
-
+app.use("/admin", adminRouter);
+app.use("/user", userRouter);
 
 // Connect to MongoDB
 // DONT MISUSE THIS THANKYOU!!
-mongoose.connect('mongodb://localhost:27017/courses', { useNewUrlParser: true, useUnifiedTopology: true, dbName: "courses" });
+mongoose.connect(
+  `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.wgmqb0q.mongodb.net/`,
+  { useNewUrlParser: true, useUnifiedTopology: true, dbName: "courses" }
+);
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+app.listen(3000, () => console.log("Server running on port 3000"));
