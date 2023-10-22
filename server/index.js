@@ -17,7 +17,7 @@ app.use("/user", userRouter);
 // DONT MISUSE THIS THANKYOU!!
 
 app.get('/', (req, res) => {
-  res.send("hello there! this is my first backend deployment on aws server :)");
+  res.send("hello there! this is my first backend deployment on aws server :) !");
 });
 
 mongoose.connect(
